@@ -1,0 +1,64 @@
+- Development of the simulator
+
+- Testing results:
+
+	1) Effect of the size (and shape) of the environment on the number of redirections, strong changes, collisions, etc.
+	2) Effect of the virtual path shapes on the number of redirections, strong changes, collisions, etc.
+	3) Effect of the redirected walking algorithms on the number of redirections, strong changes, collisions, etc. 
+	4) Effect of the redirected walking algorithms on the short term prediction of user's location.
+	5) Number of users / scalability vs. everything 
+
+- Testing finished, results and testing scenarios available in a itHub repository - simulator done
+
+Sprints: 
+
+1) Today's discussion
+
+2) Jan 7: 
+
+- Scripts and results on effects of sizes and shapes of the environment on the performance - Jeroen
+- Scripts and results on effects of type of virtual path on the performance - Jakob
+- HowTo on running the simulator locally - Jeroen 
+- HowTo on running the simulator on the cluster - Jakob
+- Scripts and results on number of users vs. everything - Filip 
+- Initiating translation to ns3
+- Discussion with Mathias on his demo
+
+3) Jan 14:
+
+- Finalized results on all Jan 7 stuff - Filip (lead), Jeroen, Jakob
+- Paper structure proposition for simulator + discussion on 1-5 + 1) - Filip
+- Initial results on the translation of the code to ns3 - Jakob
+- Paper structure proposition on ns3 code - Jakob
+- Paper structure proposition on type of virtual path on the performance - Jeroen
+
+4) Jan 21:
+
+- Draft full paper + demo paper on simulator - Filip
+- Translation to ns3 finalized - Jakob
+- Draft full paper on type of virtual path on the performance - Jeroen
+- Discussion on what are the low-hanging fruits and next steps, if any - e.g., feeding real virtual reality traces and repeating all experiments 
+- Discussion 3) - Jakob, and 4) - Filip - running new simulations
+
+5) Jan 28:
+
+- Demo front end really - demo finalized - Filip, Ana
+- Discussion with Mathias, finalizing the demo, demo paper structure - Filip, Mathias
+- Draft full paper on ns3 code translation - Jakob
+- All other papers, repository, data polished and ready - Jeroen, Filip
+- New simulation results ready - discussion on how to incorporate 3) and 4) into a paper - paper structure
+
+6) Early Feb - draft paper on 3) and 4) - submission soon after
+
+
+- Paper at MMSys - simulator + discussion on 1)-5)
+- Simulator and Mathias demos at ICC'21 - Ana will try to do the front end
+- Code translation to ns3 - paper at ns3 workshop?
+- Paper on 2) - Effects of the ype of virtual path 
+- Paper on 5) - Scalability study for different users, sizes, algorithms, etc.
+- Paper on 3) + journal paper on 3) + 4) - or similar
+- Mobility model paper and suggestions for virtual worlds
+
+2   x code repos and simulators by February 2021.
+2   x demo papers submitted by February 2021.
+5-6 x full papers submitted by March 2021.  
