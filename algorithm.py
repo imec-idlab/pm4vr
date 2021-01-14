@@ -62,6 +62,9 @@ def calculate_sum_distance(user, users, env):
 # Implements the APF-R algorithm from Bachmann et al.
 def apf_r(x_step, y_step, user, users, env, threshold):
 
+	# The idea here is to capture if a rotation has happended, as it is not desired. 
+	number_of_rotations = 0
+
 	# If too close to any environmental segment just rotate the user physically by 180 degrees
 	for env_segment in env:
 
@@ -72,7 +75,8 @@ def apf_r(x_step, y_step, user, users, env, threshold):
 		if np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1) < threshold and len(user["phy_path_x"]) > 1:
 
 			# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
-			return -user["phy_path_x"][-1] + user["phy_path_x"][-2], -user["phy_path_y"][-1] + user["phy_path_y"][-2]
+			number_of_rotations += 1 
+			return -user["phy_path_x"][-1] + user["phy_path_x"][-2], -user["phy_path_y"][-1] + user["phy_path_y"][-2], number_of_rotations
 
 
 	# If too close to any other user just rotate the user physically by 180 degrees
@@ -85,10 +89,11 @@ def apf_r(x_step, y_step, user, users, env, threshold):
 			if dist < threshold:
 
 				# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
-				return -user["phy_path_x"][-2] + user["phy_path_x"][-1], -user["phy_path_y"][-2] + user["phy_path_y"][-1]
+				number_of_rotations += 1 
+				return -user["phy_path_x"][-2] + user["phy_path_x"][-1], -user["phy_path_y"][-2] + user["phy_path_y"][-1], number_of_rotations
 
 	# if not too close to any environmental obstacle and/or users, don't modify the calculated steps
-	return x_step, y_step
+	return x_step, y_step, number_of_rotations
 
 
 

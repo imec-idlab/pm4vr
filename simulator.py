@@ -35,6 +35,8 @@ users = [usr1, usr2, usr3, usr4]
 
 # Iterate through all steps of the simulation (!! check simulaattion_time parameter, as it includes the resolution !!).
 
+num_rotations_per_users = {}
+
 for time_iter in range(0, simulation_time - 1):
 
 	# At each step of the evaluation, calculate force_vectors and moving_rates. Force vectors are used to define the 
@@ -55,8 +57,16 @@ for time_iter in range(0, simulation_time - 1):
 		# If the calculated x_step and y_step would result in hitting another user or an environmental obstacle (i.e., if the 
 		# distance between the user and another entity (user, obstacle) is lower than a certain threshold), invoke the APF-R 
 		# algorithm (in essence, rotating the user by 360 degrees in the virtual words, while in the physical world the user 
-		# rotates for 180 degrees only - away from the nearby entity).
-		final_x_step, final_y_step = algorithm.apf_r(x_step, y_step, user, users, env, threshold = 0.2)
+		# rotates for 180 degrees only - away from the nearby entity). rotation_flag = 1 indicated that a rotation has happened.
+		final_x_step, final_y_step, rotation_flag = algorithm.apf_r(x_step, y_step, user, users, env, threshold = 0.2)
+		
+		# Capturing the number of ratations (i.e., invocations of the APF-R algrothm) per each user
+		try:
+			num_rotations_per_users[user["identity"]] += 1
+		
+		except:
+			num_rotations_per_users[user["identity"]]  = 1
+
 
 		# Update the user's physical trajectory with the newest location
 		user['phy_path_x'].append(user['phy_path_x'][time_iter - 1] + x_step)
@@ -65,6 +75,9 @@ for time_iter in range(0, simulation_time - 1):
 		iter_temp += 1
 
 # Visualization of the virtual and physical paths for all users
-visualization.visualize_paths(simulation_time, users)
 
+# visualization.visualize_paths(simulation_time, users)
+
+# Performance metrics
+print num_rotations_per_users 
 
