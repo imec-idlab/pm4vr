@@ -109,7 +109,7 @@ def max_rotation(users, movement_threshold, radius, resolution):
 
 		if len(user["phy_path_x"]) > 1:
 
-			linear_velocity = math.sqrt(pow(user["phy_path_x"][-1] - user["phy_path_x"][-2], 2) + pow(user["phy_path_y"][-1] - user["phy_path_y"][-2], 2)) / resolution
+			linear_velocity = math.sqrt(pow(user["phy_path_x"][-1] - user["phy_path_x"][-2], 2) + pow(user["phy_path_y"][-1] - user["phy_path_y"][-2], 2)) * resolution
 		
 		else:
 		
@@ -119,9 +119,9 @@ def max_rotation(users, movement_threshold, radius, resolution):
 
 		if linear_velocity > movement_threshold:
 
-			moving_rate = 360 * linear_velocity / (2 * math.pi * radius)
+			moving_rate = (360 * linear_velocity / (2 * math.pi * radius) % 360)
 			
-		if moving_rate < 0.261:
+		if moving_rate < 0.261 * math.pi / 180:
 			
 			moving_rates.append(max(min(moving_rate, movement_threshold), 0))
 		
@@ -249,7 +249,7 @@ def calculate_next_physical_step(user, moving_rate, force_vector, max_move_rate,
 
 
 	# If the desired moving rotation is smaller that the threshold, everything seems easy
-	if abs(user_angle - desired_angle) < max_move_rate * math.pi / 180:
+	if abs(moving_rate) < max_move_rate * math.pi / 180:
 
 		x_step_temp = force_vector[0] / math.sqrt(pow(force_vector[0],2) + pow(force_vector[1],2))
 		y_step_temp = force_vector[1] / math.sqrt(pow(force_vector[0],2) + pow(force_vector[1],2))

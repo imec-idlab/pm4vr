@@ -19,7 +19,7 @@ env = environment.define_square(20.0)
 
 # Define the users by defining their virtual movement trajectory. 
 usr1 = user.create([-4.0, -4.0], 0.0, 1)
-usr1["virt_path_x"], usr1["virt_path_y"] = user.create_virtual_path_random([-4.0, -4.0], simulation_time, resolution)
+usr1["virt_path_x"], usr1["virt_path_y"] = user.create_virtual_path_random([4.0, 4.0], simulation_time, resolution)
 
 usr2 = user.create([4.0, 4.0], 0.0, 2)
 usr2["virt_path_x"], usr2["virt_path_y"] = user.create_virtual_path_random([-4.0, 4.0], simulation_time, resolution)
@@ -33,7 +33,7 @@ usr4["virt_path_x"], usr4["virt_path_y"] = user.create_virtual_path_random([-4.0
 users = [usr1, usr2, usr3, usr4]
 
 
-# Iterate through all steps of the simulation (!! check simulaattion_time parameter, as it includes the resolution !!).
+# Iterate through all steps of the simulation (!! check simulation_time parameter, as it includes the resolution !!).
 
 num_rotations_per_users = {}
 
@@ -57,9 +57,9 @@ for time_iter in range(0, simulation_time - 1):
 		# If the calculated x_step and y_step would result in hitting another user or an environmental obstacle (i.e., if the 
 		# distance between the user and another entity (user, obstacle) is lower than a certain threshold), invoke the APF-R 
 		# algorithm (in essence, rotating the user by 360 degrees in the virtual words, while in the physical world the user 
-		# rotates for 180 degrees only - away from the nearby entity). rotation_flag = 1 indicated that a rotation has happened.
-		final_x_step, final_y_step, rotation_flag = algorithm.apf_r(x_step, y_step, user, users, env, threshold = 0.2)
-		
+		# rotates for 180 degrees only - away from the nearby entity). rotation_flag = 1 indicates that a rotation has happened.
+		final_x_step, final_y_step, rotation_flag = algorithm.apf_r(x_step, y_step, user, users, env, threshold = 0.5)
+
 		# Capturing the number of ratations (i.e., invocations of the APF-R algrothm) per each user
 		try:
 			num_rotations_per_users[user["identity"]] += 1
@@ -75,9 +75,9 @@ for time_iter in range(0, simulation_time - 1):
 		iter_temp += 1
 
 # Visualization of the virtual and physical paths for all users
-
-# visualization.visualize_paths(simulation_time, users)
+visualization.visualize_paths(simulation_time, users)
 
 # Performance metrics
 print num_rotations_per_users 
+
 
