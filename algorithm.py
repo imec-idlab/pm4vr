@@ -95,7 +95,7 @@ def apf_r_usr(x_step, y_step, user, users, threshold):
 		if user["identity"] != other_user["identity"]:
 
 			dist = math.sqrt(pow(other_user["phy_path_x"][-1] - user["phy_path_x"][-1] - x_step, 2) + pow(other_user["phy_path_y"][-1] - user["phy_path_y"][-1] - y_step, 2))
-
+			
 			if dist < threshold:
 
 				# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
@@ -243,7 +243,7 @@ def calculate_other_users_vector(user, users, sum_distance, gamma):
 # (i.e., maintaining imperceptibility) in the direction suggested by the force vectors. Since the goal of the simulator is to
 # provide mapping between virtual and physical world, this steering can be modeled solely by the current and next locations of 
 # the users.   
-def calculate_next_physical_step(user, moving_rate, force_vector, max_move_rate, precision):
+def calculate_next_physical_step(user, moving_rate, force_vector, max_move_rate, resolution):
 
 	user_angle = np.arctan2((user["virt_path_y"][len(user["phy_path_x"])] - user["virt_path_y"][len(user["phy_path_x"])-1]), (user["virt_path_x"][len(user["phy_path_x"])] - user["virt_path_x"][len(user["phy_path_x"])-1]))
 	desired_angle = np.arctan2(force_vector[0], force_vector[1])
@@ -283,14 +283,13 @@ def calculate_next_physical_step(user, moving_rate, force_vector, max_move_rate,
 
 			y_step_temp = math.tan(user_minus * math.pi / 180) * x_step_temp	
 
-
 	# Scale to precision
 	if y_step_temp > 0.0:
 		
-		y_step = math.sqrt(pow(precision, 2) / (1 + pow(x_step_temp, 2) / pow(y_step_temp, 2)))
+		y_step = math.sqrt(pow(resolution, 2) / (1 + pow(x_step_temp, 2) / pow(y_step_temp, 2)))
 	
 	else:
-		y_step = -math.sqrt(pow(precision, 2) / (1 + pow(x_step_temp, 2) / pow(y_step_temp, 2)))
+		y_step = -math.sqrt(pow(resolution, 2) / (1 + pow(x_step_temp, 2) / pow(y_step_temp, 2)))
 	
 	x_step = x_step_temp * y_step / y_step_temp
 
