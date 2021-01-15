@@ -62,10 +62,10 @@ for time_iter in range(0, simulation_time - 1):
 
 		# Capturing the number of ratations (i.e., invocations of the APF-R algrothm) per each user
 		try:
-			num_rotations_per_users[user["identity"]] += 1
+			num_rotations_per_users[user["identity"]] += rotation_flag
 		
 		except:
-			num_rotations_per_users[user["identity"]]  = 1
+			num_rotations_per_users[user["identity"]]  = rotation_flag
 
 
 		# Update the user's physical trajectory with the newest location

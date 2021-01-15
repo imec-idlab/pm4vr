@@ -43,7 +43,7 @@ def calculate_sum_distance(user, users, env):
 		p2 = env_segment[1]
 		p3 = np.array([user["phy_path_x"][-1], user["phy_path_y"][-1]])
 
-		dist += np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1)
+		dist += abs(np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1))
 
 	# Calculating the force vector for other users 
 	for other_user in users:
@@ -72,7 +72,7 @@ def apf_r(x_step, y_step, user, users, env, threshold):
 		p2 = env_segment[1]
 		p3 = np.array([user["phy_path_x"][-1] + x_step, user["phy_path_y"][-1] + y_step])
 
-		if np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1) < threshold and len(user["phy_path_x"]) > 1:
+		if abs(np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1)) < threshold and len(user["phy_path_x"]) > 1:
 
 			# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
 			number_of_rotations += 1 
@@ -163,7 +163,7 @@ def calculate_env_vectors(user, env, sum_distance):
 		# If vertical line segment (it can be either vertical of horizontal)
 		if p1[0] == p2[0]:
 
-			dist_x_temp = np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1)
+			dist_x_temp = abs(np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1))
 
 			# Taking care of the direction of the resulting vector
 			if p1[0] > user["phy_path_x"][-1]:
@@ -177,7 +177,7 @@ def calculate_env_vectors(user, env, sum_distance):
 		# If horizontal line segment
 		else:
 
-			dist_y_temp = np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1)
+			dist_y_temp = abs(np.cross(p2 - p1, p3 - p1) / np.linalg.norm(p2 - p1))
 
 			if p1[1] > user["phy_path_y"][-1]:
 
