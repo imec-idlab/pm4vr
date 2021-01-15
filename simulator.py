@@ -58,11 +58,23 @@ for time_iter in range(0, simulation_time - 1):
 		# distance between the user and another entity (user, obstacle) is lower than a certain threshold), invoke the APF-R 
 		# algorithm (in essence, rotating the user by 360 degrees in the virtual words, while in the physical world the user 
 		# rotates for 180 degrees only - away from the nearby entity). rotation_flag = 1 indicates that a rotation has happened.
-		final_x_step, final_y_step, rotation_flag = algorithm.apf_r(x_step, y_step, user, users, env, threshold = 0.5)
+		int_x_step, int_y_step, rotation_flag_1 	= algorithm.apf_r_env(x_step, y_step, user, env, threshold = 0.5)
+		final_x_step, final_y_step, rotation_flag_2 = algorithm.apf_r_usr(int_x_step, int_y_step, user, users, threshold = 0.5)
 
-		# Capturing the number of ratations (i.e., invocations of the APF-R algrothm) per each user
+		# Capturing the number of rotations (i.e., invocations of the APF-R algorithm) per each user. Rotations can 
+		# happen when moving away from an environmental obstacle (rotation_flag_1) or another user (rotation_flag_1).
+		# If both of them happen simultaneously, it is counted as one rotation.
+		if rotation_flag_1 == 0 and rotation_flag_2 == 0:
+			# A rotation didn't occur if both flags are 0.
+			rotation_flag = 0
+
+		else:
+			# Otherwise a rotation occurred. 
+			rotation_flag = 1
+
+		# This is just for storing the number of rotations per user
 		try:
-			num_rotations_per_users[user["identity"]] += rotation_flag
+			num_rotations_per_users[user["identity"]] += rotation_flag  
 		
 		except:
 			num_rotations_per_users[user["identity"]]  = rotation_flag

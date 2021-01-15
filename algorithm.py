@@ -60,7 +60,7 @@ def calculate_sum_distance(user, users, env):
 
 
 # Implements the APF-R algorithm from Bachmann et al.
-def apf_r(x_step, y_step, user, users, env, threshold):
+def apf_r_env(x_step, y_step, user, env, threshold):
 
 	# The idea here is to capture if a rotation has happended, as it is not desired. 
 	number_of_rotations = 0
@@ -76,8 +76,18 @@ def apf_r(x_step, y_step, user, users, env, threshold):
 
 			# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
 			number_of_rotations += 1 
-			return -user["phy_path_x"][-1] + user["phy_path_x"][-2], -user["phy_path_y"][-1] + user["phy_path_y"][-2], number_of_rotations
+			return -x_step, -y_step, number_of_rotations
 
+	# if not too close to any environmental obstacle and/or users, don't modify the calculated steps
+	return x_step, y_step, number_of_rotations
+
+
+
+# Implements the APF-R algorithm from Bachmann et al.
+def apf_r_usr(x_step, y_step, user, users, threshold):
+
+	# The idea here is to capture if a rotation has happended, as it is not desired. 
+	number_of_rotations = 0
 
 	# If too close to any other user just rotate the user physically by 180 degrees
 	for other_user in users: 
@@ -90,11 +100,10 @@ def apf_r(x_step, y_step, user, users, env, threshold):
 
 				# The idea here is to make the step in the previous direction (i.e., 180 degree rotation)
 				number_of_rotations += 1 
-				return -user["phy_path_x"][-2] + user["phy_path_x"][-1], -user["phy_path_y"][-2] + user["phy_path_y"][-1], number_of_rotations
+				return -x_step, -y_step, number_of_rotations
 
 	# if not too close to any environmental obstacle and/or users, don't modify the calculated steps
 	return x_step, y_step, number_of_rotations
-
 
 
 # The force vectors above indicate how much the user should move in a certain physical direction in order to optimally mitigate collisions 
