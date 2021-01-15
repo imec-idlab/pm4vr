@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+import numpy as np
 # Use for visualizing the virtual and physical paths of the users defined in the users variable.   
 def visualize_paths(number_of_points, users):
 
@@ -13,20 +13,25 @@ def visualize_paths(number_of_points, users):
 					
 		plt.figure(1) 
 		plt.grid(True)
-		plt.title("Virtual paths: random walk ($n = " + str(number_of_points) + "$ steps)") 
-		plt.plot(user["virt_path_x"], user["virt_path_y"], '.', color=color_codes[iter_temp], label="User" + str(flag_temp)) 
+		plt.title("Virtual paths: random walk ($n = " + str(number_of_points) + "$ steps)")
+		virt_path = np.array(user.virt_locations)
+		plt.plot(virt_path[:,0], virt_path[:,1], '.', color=color_codes[iter_temp], label="User" + str(flag_temp))
 		
 		if flag_temp <= len(users):
-			plt.plot(user["virt_path_x"][0], user["virt_path_y"][0], 'x', color="black") 
+			plt.plot(virt_path[0,0], virt_path[0,1], 'x', color="black")
 		plt.legend()
 		
-		plt.figure(2) 
+		plt.figure(2)
 		plt.grid(True)
-		plt.title("Physical paths") 
-		plt.plot(user["phy_path_x"], user["phy_path_y"], '.', color=color_codes[iter_temp], label="User" + str(flag_temp))
-		
+		plt.title("Physical paths")
+		phy_path = np.array(user.phy_locations)
+
+		plt.plot(phy_path[:,0], phy_path[:,1], '.', color=color_codes[iter_temp], label="User" + str(flag_temp))
+
 		if flag_temp <= len(users):
-			plt.plot(user["phy_path_x"][0], user["phy_path_y"][0], 'x', color="black") 
+			plt.plot(phy_path[0,0], phy_path[0,1], 'x', color="black")
+		plt.xlim(-11,11)
+		plt.ylim(-11,11)
 		plt.legend()
 
 		iter_temp -= 1 

@@ -1,80 +1,41 @@
 import numpy as np
 import pylab 
 import random 
-  
 
-# Creates a user specified by its identity (one user one identity!), initial location, and initial speed
-def create(initial_loc, initial_speed, identity):
+class User:
+	def __init__(self, initial_loc, initial_speed, identity):
+		if type(initial_loc) == list:
+			initial_loc = np.array(initial_loc)
+		self.identity = identity
+		self.initial_loc = initial_loc
+		self.speed = initial_speed
+		self.phy_locations = [initial_loc]
+		self.virt_locations = []
 
-	user = {}
-	user["identity"] = identity
-	user["phy_path_x"] = [] 
-	user["phy_path_x"].append(initial_loc[0]) # Physical and virtual
-	user["phy_path_y"] = []
-	user["phy_path_y"].append(initial_loc[1])# Physical and virtual
-	user["speed"] = initial_speed
-
-	return user
-
-
-# Creates a random virtual path 
-def create_virtual_path_random(initial_loc, number_of_points, precision):
-
-	# 50 ms precision, 20 points per second -> distance traversed for 1 m/s walk equals 0.05 m
-	# Creating two arrays for containing x and y coordinates of size equals to the number of points and filled up with 0's 
-	x = np.zeros(number_of_points) 
-	x[0] = initial_loc[0]
-	y = np.zeros(number_of_points) 
-  	y[0] = initial_loc[1]
-
-	# Filling the coordinates with random variables 
-	for i in range(1, number_of_points): 
-		
-		val = random.randint(1, 4) # direction
-		if val == 1: 
-		    x[i] = x[i - 1] + 1 * precision
-		    y[i] = y[i - 1] 
-		elif val == 2: 
-		    x[i] = x[i - 1] - 1 * precision
-		    y[i] = y[i - 1] 
-		elif val == 3: 
-			x[i] = x[i - 1] 
-			y[i] = y[i - 1] + 1 * precision
-		else: 
-			x[i] = x[i - 1] 
-			y[i] = y[i - 1] - 1 * precision
-
-	return x, y
+	def get_phy_loc(self, offset=0):
+		return self.phy_locations[-1 + offset]
 
 
-# Creates a line-like virtual path 
-def create_virtual_path_line(initial_loc, number_of_points, precision):
+	def get_virt_loc(self, offset=0):
+		return self.virt_locations[-1 + offset]
 
-	# 50 ms precision, 20 points per second -> distance traversed for 1 m/s walk equals 0.05 m
-	# Creating two arrays for containing x and y coordinates of size equals to the number of points and filled up with 0's 
-	x = np.zeros(number_of_points) 
-	x[0] = initial_loc[0]
-	y = np.zeros(number_of_points) 
-  	y[0] = initial_loc[1]
+	def fill_virtual_path(self, number_of_points, step, fixed_dir=None):
+		print(step, "precision", number_of_points)
+		self.virt_locations.append(self.initial_loc)
 
-	# filling the coordinates with random variables 
-	for i in range(1, number_of_points): 
-		
-		val = 1
-		if val == 1: 
-		    x[i] = x[i - 1] + 1 * precision
-		    y[i] = y[i - 1] 
-		elif val == 2: 
-		    x[i] = x[i - 1] - 1 * precision
-		    y[i] = y[i - 1] 
-		elif val == 3: 
-			x[i] = x[i - 1] 
-			y[i] = y[i - 1] + 1 * precision
-		else: 
-			x[i] = x[i - 1] 
-			y[i] = y[i - 1] - 1 * precision
+		# Filling the coordinates with random variables
+		for i in range(1, number_of_points):
 
-	return x, y
+			val = random.randint(1, 4) if fixed_dir is None else fixed_dir # direction
+			newloc = np.array(self.virt_locations[-1])
+			if val == 1: #right
+				newloc[0] += step
+			elif val == 2: #left
+				newloc[0] -= step
 
+			elif val == 3: #up
+				newloc[1] += step
 
-
+			else:  #down
+				newloc[1] -= step
+			self.virt_locations.append(newloc)
