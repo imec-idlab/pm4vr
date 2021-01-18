@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib import colors
 import numpy as np
 # Use for visualizing the virtual and physical paths of the users defined in the users variable.   
 def visualize_paths(number_of_points, users):
@@ -26,12 +27,16 @@ def visualize_paths(number_of_points, users):
 		plt.title("Physical paths")
 		phy_path = np.array(user.phy_locations)
 
-		plt.plot(phy_path[:,0], phy_path[:,1], '.', color=color_codes[iter_temp], label="User" + str(flag_temp))
+		# Fade in the color  https://stackoverflow.com/a/61758419
+		cmap = colors.LinearSegmentedColormap.from_list(
+			'incr_alpha', [(0, (*colors.to_rgb(color_codes[iter_temp]), 0)), (1, color_codes[iter_temp])])
+		plt.scatter(phy_path[:,0], phy_path[:,1], c=range(phy_path.shape[0]), cmap=cmap, label="User" + str(flag_temp), ec=None)
 
 		if flag_temp <= len(users):
 			plt.plot(phy_path[0,0], phy_path[0,1], 'x', color="black")
 		plt.xlim(-11,11)
 		plt.ylim(-11,11)
+		plt.gca().set_aspect('equal', adjustable='box')
 		plt.legend()
 
 		iter_temp -= 1 
