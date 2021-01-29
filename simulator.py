@@ -31,10 +31,11 @@ usr1 = User([-9.0, 0.0], 1.0, 1)
 usr1.fill_virtual_path(rdw.steps, rdw.delta_t, 1)
 usr2 = User([9.0, 0.0], 1.0, 2)
 usr2.fill_virtual_path(rdw.steps, rdw.delta_t, 2)
+usr3 = User([9.0, 9.0], 1.0, 2)
+usr3.fill_virtual_path(rdw.steps, rdw.delta_t, 3)
 
 
-
-users = [usr1, usr2]
+users = [usr1, usr2, usr3]
 
 
 # Iterate through all steps of the simulation (!! check simulation_time parameter, as it includes the resolution !!).
