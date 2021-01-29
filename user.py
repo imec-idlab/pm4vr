@@ -12,12 +12,14 @@ class User:
 		self.phy_locations = [initial_loc]
 		self.virt_locations = []
 
+
 	def get_phy_loc(self, offset=0):
 		return self.phy_locations[-1 + offset]
 
 
 	def get_virt_loc(self, offset=0):
 		return self.virt_locations[-1 + offset]
+
 
 	def fill_virtual_path(self, number_of_points, step, fixed_dir=None):
 		print(step, "precision", number_of_points)
@@ -30,6 +32,7 @@ class User:
 			newloc = np.array(self.virt_locations[-1])
 			if val == 1: #right
 				newloc[0] += step
+
 			elif val == 2: #left
 				newloc[0] -= step
 
