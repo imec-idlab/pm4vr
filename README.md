@@ -27,3 +27,9 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+
+
+- Short term prediction (LSTM first)
+- Different shapes of the environment (square, uneven, rectangle, circle)
+- Different types of virtual paths (line, zig-zag, circular, random)

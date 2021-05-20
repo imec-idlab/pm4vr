@@ -1,10 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Library for visualizing the physical and virtual movement trajectories. 
+"""
+
+__author__ = "Filip Lemic, Jakob Struye, Jeroen Famaey"
+__copyright__ = "Copyright 2021, Internet Technology and Data Science Lab (IDLab), University of Antwerp - imec"
+__version__ = "1.0.0"
+__maintainer__ = "Filip Lemic"
+__email__ = "filip.lemic@uantwerpen.be"
+__status__ = "Development"
+
+
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import numpy as np
 # Use for visualizing the virtual and physical paths of the users defined in the users variable.   
+
 def visualize_paths(number_of_points, users):
 
-	# Change the colorcode if you require more than 8 users.
+	# Change the color-code if you require more than 8 users.
 	color_codes = {1: "#f7fbff", 2: "#deebf7", 3: "#c6dbef", 4: "#9ecae1", 5: "#6baed6", 6: "#4292c6", 7: "#2171b5", 8: "#084594"}
 
 	iter_temp = 8 
@@ -42,5 +58,4 @@ def visualize_paths(number_of_points, users):
 		iter_temp -= 1 
 		flag_temp += 1
 		
-
 	plt.show() 

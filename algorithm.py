@@ -1,3 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Library implementing the multi-user redirected walking (APH-RDW) and resetting (APH-R) using artificial potential fields.
+"""
+
+__author__ = "Filip Lemic, Jakob Struye, Jeroen Famaey"
+__copyright__ = "Copyright 2021, Internet Technology and Data Science Lab (IDLab), University of Antwerp - imec"
+__version__ = "1.0.0"
+__maintainer__ = "Filip Lemic"
+__email__ = "filip.lemic@uantwerpen.be"
+__status__ = "Development"
+
 import numpy as np
 np.seterr(divide='ignore')
 import math
@@ -112,7 +126,7 @@ class RedirectedWalker:
 		if len(user.phy_locations) == 1:
 			return 0.0
 
-		# (Jakob) get vector from this to other user AND the other way around, both are needed!
+		# Get vector from this to other user AND the other way around, both are needed!
 		vector_to_other = other_user.get_phy_loc() - user.get_phy_loc()
 		vector_from_other = user.get_phy_loc() - other_user.get_phy_loc()
 		user_dir = user.get_phy_loc() - user.get_phy_loc(-1)
@@ -288,5 +302,5 @@ def deg(angle):
 def rad(angle):
 	return angle * math.pi / 180
 
-def norm( vec):
+def norm(vec):
 	return np.linalg.norm(vec)

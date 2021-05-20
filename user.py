@@ -1,5 +1,20 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Library for defining a user. Each user should be defined with its identity, initial location and 
+speed, and virtual movement trajectory. 
+"""
+
+__author__ = "Filip Lemic, Jakob Struye, Jeroen Famaey"
+__copyright__ = "Copyright 2021, Internet Technology and Data Science Lab (IDLab), University of Antwerp - imec"
+__version__ = "1.0.0"
+__maintainer__ = "Filip Lemic"
+__email__ = "filip.lemic@uantwerpen.be"
+__status__ = "Development"
+
+
 import numpy as np
-import pylab 
 import random 
 
 class User:
@@ -22,7 +37,6 @@ class User:
 
 
 	def fill_virtual_path(self, number_of_points, step, fixed_dir=None):
-		print(step, "precision", number_of_points)
 		self.virt_locations.append(self.initial_loc)
 
 		# Filling the coordinates with random variables
@@ -42,3 +56,19 @@ class User:
 			else:  #down
 				newloc[1] -= step
 			self.virt_locations.append(newloc)
+
+	# The goal is to return a 1-dimensional list to be reshaped later on for short-term predictions
+	def get_phy_path(self):
+
+		dataset = {}
+		dataset['phy_x'] = []
+		dataset['phy_y'] = []
+
+		for i in self.phy_locations:
+			
+			dataset['phy_x'].append(i[0])
+			dataset['phy_y'].append(i[1])
+
+		return dataset
+
+
