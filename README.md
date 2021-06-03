@@ -4,14 +4,12 @@
 
 ![Usage overview](overview.png)
 
-<a name="setup"></a>
 ## Requirements
 
 * <a href="https://www.python.org/downloads/release/python-360/">Python 3.6</a>
 * Python libraries: <a href="https://numpy.org/"scipy>NumPy</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://www.tensorflow.org/learn">TensorFlow</a>.
 
-<a name="installation"></a>
-## Installation and Setup
+## Installation
 
 Download the simulator and start it from the main script _simulator.py_. 
 
@@ -19,10 +17,16 @@ Download the simulator and start it from the main script _simulator.py_.
  python simulator.py
 ```
 
-<a name="usage"></a>
 ## Usage Instructions
 
 * Configure the desired set of input parameters in _simulator.py_. 
 * Define each VR user with its initial location and virtual trajectory.
 * Define if the micro-scale performance metric should be captured using _prediction.make_and_evaluate_predictions_ (see example).
 
+## Note
+
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]
+
+This project is licensed with the GNU GPL v2 license, meaning that you are free to share and change it, while making sure the software is free for all its users. In addition, any works and publications derived using the project or some of its parts should acknowledge our efforts by citing the following:
+
+Filip Lemic, Jakob Struye, and Jeroen Famaey: _User Mobility Simulator for Full-Immersive Multiuser Virtual Reality with Redirected Walking_, submitted for publication, 2021 
