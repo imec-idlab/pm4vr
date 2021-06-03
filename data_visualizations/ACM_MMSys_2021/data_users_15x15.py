@@ -180,7 +180,7 @@ box1 = plt.bar([1, 3, 5, 7, 9], time, width=0.8)
 box2 = plt.bar([2, 4, 6, 8, 10], time_full, width=0.8)
 
 plt.title('Execution time (15x15 m^2)', fontsize=12)
-plt.ylabel('Time [sec]', fontsize=12)
+plt.ylabel('Exec. time [sec]', fontsize=12)
 plt.xlabel('Number of users', fontsize=12)
 plt.xticks([1.5, 3.5, 5.5, 7.5, 9.5], ('1', '2', '4', '6', '8'), fontsize=10)
 # plt.legend((box1[0], box2[0]), ('Without short-term prediction', 'With short-term prediction'), fontsize=12)

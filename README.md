@@ -1,35 +1,34 @@
-# README #
+# User Mobility Simulator for Full-Immersive Multiuser Virtual Reality with Redirected Walking
 
-This README would normally document whatever steps are necessary to get your application up and running.
+<div class="align-justify"> Full-immersive multiuser Virtual Reality (VR) applications are envisioned to enable seamless mobility of VR users in the virtual worlds, while simultaneously constraining them inside shared physical spaces through redirected walking. For enabling high data rate and low latency delivery of video content in such setups, the supporting wireless networks will have to utilize highly directional communication links, where these links will have to “track” the mobile VR users for maintaining the Line of Sight (LoS) connectivity. The design decisions about the mobility patterns of the VR users in the virtual worlds will thus have a substantial effect on the mobility of these users in the physical environments, and therefore also on performance of the underlying networks. Hence, there is a need for a tool that can provide a mapping between design decisions about the mobility in the virtual words, and their effects on the mobility in the physical environments. 
 
-### What is this repository for? ###
+To address this issue, we provide a simulator for enabling this functionality. Given a set of VR users with their virtual movement trajectories, the outline of the physical deployment environment, and a redirected walking algorithm for avoiding physical collisions, the simulator is able to derive the physical movements of the users. Based on the derived physical movements, the simulator can capture a set of performance metrics characterizing the number of perceivably resets and the distances between such resets for each user. The simulator is also able to indicate the predictability of the physical paths, which can serve as an indication of the complexity of supporting a given virtual movement patterns by the underlying networks.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Table of Contents
+- [PM4VR](#)
+  - [Requirements](#setup)
+  - [Installation and Setup](#installation)
+  - [Usage Instructions](#usage)
 
-### How do I get set up? ###
+<a name="setup"></a>
+## Requirements
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* <a href="https://www.python.org/downloads/release/python-360/">Python 3.6</a>
+* Python libraries: <a href="https://numpy.org/"scipy>NumPy</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://www.tensorflow.org/learn">TensorFlow</a>.
 
-### Contribution guidelines ###
+<a name="installation"></a>
+## Installation and Setup
 
-* Writing tests
-* Code review
-* Other guidelines
+Download the simulator and start it from the main script _simulator.py_. 
 
-### Who do I talk to? ###
+```vim
+ python simulator.py
+```
 
-* Repo owner or admin
-* Other community or team contact
+<a name="usage"></a>
+## Usage Instructions
 
+* Configure the desired set of input parameters in _simulator.py_. 
+* Define each VR user with its initial location and virtual trajectory.
+* Define if the micro-scale performance metric should be captured using _prediction.make_and_evaluate_predictions_ (see example).
 
-
-- Short term prediction (LSTM first)
-- Different shapes of the environment (square, uneven, rectangle, circle)
-- Different types of virtual paths (line, zig-zag, circular, random)
