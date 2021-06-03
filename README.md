@@ -23,10 +23,8 @@ Download the simulator and start it from the main script _simulator.py_.
 * Define each VR user with its initial location and virtual trajectory.
 * Define if the micro-scale performance metric should be captured using _prediction.make_and_evaluate_predictions_ (see example).
 
-## Note
+## License
 
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)]
-
-This project is licensed with the GNU GPL v2 license, meaning that you are free to share and change it, while making sure the software is free for all its users. In addition, any works and publications derived using the project or some of its parts should acknowledge our efforts by citing the following:
+This project is licensed with the ![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg) license, meaning that you are free to share and change it, while making sure the software is free for all its users. In addition, any works and publications derived using the project or some of its parts should acknowledge our efforts by citing the following paper:
 
 Filip Lemic, Jakob Struye, and Jeroen Famaey: _User Mobility Simulator for Full-Immersive Multiuser Virtual Reality with Redirected Walking_, submitted for publication, 2021 
