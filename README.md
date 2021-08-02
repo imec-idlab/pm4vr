@@ -28,3 +28,5 @@ Download the simulator and start it from the main script _simulator.py_.
 This project is licensed with the ![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg) license, meaning that you are free to share and change it, while making sure the software is free for all its users. In addition, we ask you to acknowledge our efforts in any works and publications derived using the project or some of its parts by citing the following paper:
 
 Filip Lemic, Jakob Struye, and Jeroen Famaey: _User Mobility Simulator for Full-Immersive Multiuser Virtual Reality with Redirected Walking_, submitted for publication, 2021 
+
+[![DOI](https://zenodo.org/badge/391089467.svg)](https://zenodo.org/badge/latestdoi/391089467)
