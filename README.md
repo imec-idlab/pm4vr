@@ -7,7 +7,7 @@
 ## Requirements
 
 * <a href="https://www.python.org/downloads/release/python-370/">Python 3.7</a>
-* Python libraries: <a href="https://numpy.org/"scipy>NumPy</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://www.tensorflow.org/learn">TensorFlow</a>.
+* Python libraries: <a href="https://numpy.org/">NumPy</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://www.tensorflow.org/learn">TensorFlow</a>.
 
 ## Installation
 
